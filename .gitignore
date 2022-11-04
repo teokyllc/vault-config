@@ -2,3 +2,6 @@
 .terraform/*
 *.tfstate
 *.tfstate.backup
+*.csr
+*.crt
+*.key

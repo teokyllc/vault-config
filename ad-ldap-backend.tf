@@ -14,7 +14,7 @@ resource "vault_ldap_auth_backend" "active_directory" {
 }
 
 resource "vault_policy" "active_directory_admin_policy" {
-  name   = "Active-Directory-Admins"
+  name   = "active-directory-admins"
   policy = <<EOT
 # Read system health check
 path "sys/health"
@@ -79,11 +79,15 @@ path "sys/mounts"
 path "kv/*" {
   capabilities = ["create", "read", "update", "delete", "list", "sudo"]
 }
+
+path "pki/*" {
+  capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+}
 EOT
 }
 
 resource "vault_ldap_auth_backend_group" "active_directory_group" {
     groupname = "Vault-Admins"
-    policies  = [vault_policy.active_directory_admin_policy.name, "default"]
+    policies  = [vault_policy.active_directory_admin_policy.name]
     backend   = vault_ldap_auth_backend.active_directory.path
 }
