@@ -27,7 +27,7 @@ resource "vault_pki_secret_backend_intermediate_cert_request" "intermediate_cert
 
 resource "vault_pki_secret_backend_intermediate_set_signed" "intermediate_signed_cert" {
  backend      = vault_mount.pki.path
- certificate  = file("~/cacerts/teokyllc-ca-chain.crt")
+ certificate  = data.vault_generic_secret.ca-chain-cert.data["ca-chain"]
 }
 
 resource "vault_pki_secret_backend_role" "pki_role" {
