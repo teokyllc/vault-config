@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - '**.tf'
+      - '.github/workflows/configure-vault.yaml'
 
 jobs:
   terraform:
