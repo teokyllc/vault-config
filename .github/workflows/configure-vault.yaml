@@ -1,0 +1,28 @@
+name: Configure Vault with Terraform
+on:
+  push:
+    paths:
+      - '**.tf'
+
+jobs:
+  terraform:
+    runs-on: self-hosted
+    env:
+      VAULT_ADDR: "https://vault.teokyllc.internal:8200"
+      VAULT_TOKEN: ${{secrets.VAULT_TOKEN}}
+      ARM_ACCESS_KEY: ${{secrets.ARM_ACCESS_KEY}}
+      
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run Terraform Plan
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          terraform init
+          terraform plan
+
+      - name: Run Terraform Apply
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          terraform init
+          terraform apply --auto-approve 
