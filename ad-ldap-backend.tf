@@ -27,6 +27,7 @@ path "sys/mounts/*"       { capabilities = ["create", "read", "update", "delete"
 path "sys/mounts"         { capabilities = ["read"] }
 path "kv/*"               { capabilities = ["create", "read", "update", "delete", "list", "sudo"] }
 path "pki/*"              { capabilities = ["create", "read", "update", "delete", "list", "sudo"] }
+path "ssh-client-signer/*"              { capabilities = ["create", "read", "update", "delete", "list", "sudo"] }
 EOT
 }
 
