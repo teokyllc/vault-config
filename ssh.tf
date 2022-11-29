@@ -9,7 +9,7 @@ resource "vault_ssh_secret_backend_ca" "backend_ca" {
 }
 
 resource "vault_ssh_secret_backend_role" "backend_role" {
-    name                    = "ssh-client-signer"
+    name                    = "signer-role"
     backend                 = vault_mount.ssh.path
     key_type                = "ca"
     allow_user_certificates = true
