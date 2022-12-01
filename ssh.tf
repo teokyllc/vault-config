@@ -15,7 +15,7 @@ resource "vault_ssh_secret_backend_role" "backend_role" {
     allow_user_certificates = true
     algorithm_signer        = "rsa-sha2-256"
     allowed_extensions      = "permit-pty,permit-port-forwarding"
-    default_user            = "allan"
+    default_user            = "ansible"
     ttl                     = "30m0s"
     allowed_users           = "*"
 }
